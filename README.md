@@ -1,2 +1,2 @@
 # rakendusteProgrammeerimine
-Testin githubi
+http://rakendusteprog.herokuapp.com
