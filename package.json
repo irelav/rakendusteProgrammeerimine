@@ -1,13 +1,26 @@
 {
-    "name": "rakendusteProgrammeerimine",
-    "version": "1.0.0",
-    "engines": {
-        "node": "10.x"
-      },
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "express": "^4.17.1"
-    }
+  "name": "rakendusteprogrammeerimine",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "description": "Testin githubi",
+  "main": "lesson1.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irelav/rakendusteProgrammeerimine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irelav/rakendusteProgrammeerimine/issues"
+  },
+  "homepage": "https://github.com/irelav/rakendusteProgrammeerimine#readme"
 }
