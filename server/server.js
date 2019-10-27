@@ -10,6 +10,11 @@ const DB = require("./database.js");
 const Item = require("./item.model.js");
 const bodyParser = require("body-parser");
 
+/* Don't need .env for Heroku */
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
 const DB_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@cluster0-wu1qz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 app.use(bodyParser.json());
