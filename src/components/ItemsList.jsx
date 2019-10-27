@@ -10,8 +10,8 @@ const ItemsList = (props) => {
                 props.items.map( item => {
 
                     return <Item 
-                        key={item.id}
-                        id={item.id}
+                        key={item._id}
+                        id={item._id}
                         imgSrc={item.imgSrc} 
                         price={item.price} 
                         title={item.title}
