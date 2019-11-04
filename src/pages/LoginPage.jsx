@@ -21,14 +21,17 @@ class LoginPage extends React.PureComponent {
     handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submit", this.state);
-        fetch("/api/users/login", {
+        fetch("/api/v1/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(this.state)
-        }).then(res => {
-            console.log("response", res);
+        }).then( res => res.json())
+        .then(({token, user}) => {
+            console.log("response", token, user);
+            this.props.onLogin({token, user});
+            this.props.history.push(`/users/${user._id}`);
         }).catch(err => {
             console.log("Error", err);
         });
@@ -42,6 +45,7 @@ class LoginPage extends React.PureComponent {
     render(){
         return (
             <>
+            <div><h1 style={{textAlign: "center"}}>Login</h1></div>
                 <div className="form">
                     <form className="login-form" onSubmit={this.handleSubmit}>
                         <input 
@@ -61,7 +65,7 @@ class LoginPage extends React.PureComponent {
                         <button>login</button>
                         <p className="message">Not registered? <Link to={"/signup"}>Register here</Link></p>
                     </form>
-                </div>
+                </div>    
             </>
         );
     }

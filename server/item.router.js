@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Item = require("./item.model.js")
 
-router.delete("/api/items/:itemId", (req, res) => {
+router.delete("/items/:itemId", (req, res) => {
     Item.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err) => {
         if(err) {
             console.log(err);
@@ -15,7 +15,7 @@ router.delete("/api/items/:itemId", (req, res) => {
     })
 });
 
-router.post("/api/items", (req, res) => {
+router.post("/items", (req, res) => {
     const props = {
         imgSrc: "google.com",
         title: "phone red",
@@ -36,7 +36,7 @@ router.post("/api/items", (req, res) => {
 /**
  * GET all items 
  */
-router.get("/api/items", (req, res)=>{
+router.get("/items", (req, res)=>{
     Item.find({}, function(err, items){
         if(err){
             console.log("Error:", err);
