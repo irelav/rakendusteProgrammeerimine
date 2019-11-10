@@ -3,31 +3,39 @@ import {Link} from "react-router-dom";
 import {userIcon, cartIcon} from "../icons";
 import "./header.css";
 import PropTypes from "prop-types";
+import {AuthContext} from "../index.jsx";
 
-const Header = ({user}) => {
+const Header = () => {
     return (
-        <div className="header">
-            <Link to={"/"}>
-                <img className="header__logo" src="/images/tlu_logo.png" />            
-            </Link>
-            <div className="header__buttons">
-                
-                {user.email && <WelcomeIcon user={user}/>}
-                {!user.email && <LoginRegisterIcon />}
-
-                <div className={"header__button"}>
-                    <img src={cartIcon} style={{height: 35}} />
-                    <div className={"header__button-text"}>Cart</div>
-                </div>
-            </div>
-        </div>
+        <AuthContext.Consumer>
+            {
+                (contextValue) => (
+                    <div className="header">
+                        <Link to={"/"}>
+                            <img className="header__logo" src="/images/tlu_logo.png" />            
+                        </Link>
+                        <div className="header__buttons">
+                            
+                            {contextValue.user.email && <WelcomeIcon user={contextValue.user}/>}
+                            {!contextValue.user.email && <LoginRegisterIcon />}
+            
+                            <div className={"header__button"}>
+                                <img src={cartIcon} style={{height: 35}} />
+                                <div className={"header__button-text"}>Cart</div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        </AuthContext.Consumer>
     );
 };
 
+/*
 Header.propTypes = {
     token: PropTypes.string,
     user: PropTypes.object,
-};
+};*/
 
 const LoginRegisterIcon = () => (
     <Link className={"header__button"} to={"/login"}>
