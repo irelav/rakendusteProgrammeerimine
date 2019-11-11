@@ -18,7 +18,7 @@ class SignupPage extends React.PureComponent {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Submit", this.state);
+        //console.log("Submit", this.state);
         fetch("/api/v1/auth/signup", {
             method: "POST",
             headers: {
@@ -26,8 +26,7 @@ class SignupPage extends React.PureComponent {
             },
             body: JSON.stringify(this.state)
         }).then(res => res.json())
-        .then(data => {
-            console.log("data", data);
+        .then(() => {
             this.props.history.push("/login");
         }).catch(err => {
             console.log("Error", err);
