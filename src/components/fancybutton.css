@@ -9,6 +9,12 @@
     display: inline-block;
     align-items: center;
   }
+
+  .btn--fancy:hover {
+    cursor: pointer;
+    background: #ff567a;
+    transition: all .2s ease-in-out;
+  }
   
   .btn-inner {
     display: flex;
