@@ -9,7 +9,7 @@ class ItemPage extends React.PureComponent{
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
     };
-    
+
     constructor(props){
         super(props);
         this.state = {};
@@ -39,8 +39,7 @@ class ItemPage extends React.PureComponent{
 
     handleBuy = () => {
         console.log("click", this.props);
-        /*this.props.dispatch(addItem(this.state));*/
-        this.props.dispatch(addItem(this.state._id));
+        this.props.dispatch(addItem(this.state));
     };
 
     render(){
