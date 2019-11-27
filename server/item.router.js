@@ -52,7 +52,7 @@ router.get("/items", (req, res)=>{
  * GET item with id 
  */
 
-router.get("/api/items/:itemId", (req, res) => {
+router.get("/items/:itemId", (req, res) => {
     Item.findById(req.params.itemId, function (err, item) {
         if(err){
             console.log("Error:", err);
