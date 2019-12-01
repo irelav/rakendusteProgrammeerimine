@@ -3,20 +3,23 @@ import {Link} from "react-router-dom";
 import {userIcon, cartIcon} from "../icons";
 import "./header.css";
 import PropTypes from "prop-types";
-import authConsumer from "./authConsumer.jsx";
+import {connect} from "react-redux";
+import {ItemProps} from "../pages/CartPage.jsx";
+import { UserPropTypes } from "../store/reducer.js";
 
-const Header = ({user}) => {
+const Header = ({user, cart}) => {
     return (
         <div className="header">
             <Link to={"/"}>
-                <img className="header__logo" src="/images/tlu_logo.png" />            
+                <img className="header__logo" src="/static/images/tlu_logo.png" />            
             </Link>
             <div className="header__buttons">
-                {user.email && <WelcomeIcon user={user}/>}
-                {!user.email && <LoginRegisterIcon />}
+                {user && <WelcomeIcon user={user}/>}
+                {!user && <LoginRegisterIcon />}
                 <Link to={"/checkout/cart"} className={"header__button"}>
                     <img src={cartIcon} style={{height: 35}} />
                     <div className={"header__button-text"}>Cart</div>
+                    <Badge>{cart.length}</Badge>
                 </Link>
             </div>
         </div>
@@ -25,7 +28,21 @@ const Header = ({user}) => {
 
 Header.propTypes = {
     token: PropTypes.string,
-    user: PropTypes.object,
+    user: PropTypes.shape(UserPropTypes),
+    cart: PropTypes.arrayOf(ItemProps).isRequired,
+};
+
+const Badge = ({children}) => {
+    if(children == 0) return null;
+    return (
+        <span className={"badge"}>
+            {children}
+        </span>
+    );
+};
+
+Badge.propTypes = {
+    children: PropTypes.number.isRequired,
 };
 
 const LoginRegisterIcon = () => (
@@ -43,7 +60,14 @@ const WelcomeIcon = ({user}) => (
 );
 
 WelcomeIcon.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.shape(UserPropTypes),
 };
 
-export default authConsumer(Header);
+const mapStateToProps = (store) => {
+    return {
+        cart: store.cart,
+        user: store.user,
+    };
+};
+
+export default connect(mapStateToProps)(Header);
