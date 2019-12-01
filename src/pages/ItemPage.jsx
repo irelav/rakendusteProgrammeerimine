@@ -4,7 +4,6 @@ import FancyButton from "../components/FancyButton.jsx";
 import {connect} from "react-redux";
 import {addItem} from "../store/actions.js";
 import "./itemPage.css";
-import {toast} from "react-toastify";
 import * as services from "../services.js";
 
 class ItemPage extends React.PureComponent{
@@ -38,7 +37,6 @@ class ItemPage extends React.PureComponent{
     handleBuy = () => {
         console.log("click", this.props);
         this.props.dispatch(addItem(this.state));
-        toast.success("Toode lisatud :)");
     };
 
     render(){
