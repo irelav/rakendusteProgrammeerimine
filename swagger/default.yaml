@@ -22,8 +22,6 @@ paths:
                   type: array
                   items:
                     $ref: "#/components/schemas/Item"
-          403:
-            description: Forbidden
           500:
             description: Error
             
