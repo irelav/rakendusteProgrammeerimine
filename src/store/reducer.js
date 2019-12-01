@@ -2,8 +2,8 @@ import {
     ITEMS_SUCCESS, 
     USER_UPDATE, 
     TOKEN_UPDATE,
-    ITEM_ADDED
-    // ITEM_REMOVED
+    ITEM_ADDED,
+    ITEM_REMOVED
 } from "./actions.js";
 
 import PropTypes from "prop-types";
@@ -43,13 +43,12 @@ export const reducer = (state = initialState, action) => {
                 items: action.payload,
             };
         }
-        /*
         case ITEM_REMOVED: {
             return {
                 ...state,
-                cart: removeItemById(state.cart, action.payload)
+                user: removeItemFromCart(state.user, action.payload)
             };
-        }*/
+        }
         case ITEM_ADDED: {
             return {
                 ...state,
@@ -61,14 +60,17 @@ export const reducer = (state = initialState, action) => {
         }
     }
 };
-/*
-const removeItemById = (items, _id) => {
-    const index = items.findIndex(item => item._id === _id);
-    if(index === -1) return items;
-    const copy = items.slice();
-    copy.splice(index, 1);
-    return copy;
-}; */
+
+const removeItemFromCart = (user, itemId) => {
+    const foundItemIndex = user.cart.findIndex(cartId => cartId === itemId);
+    if(foundItemIndex === -1) return user;
+    const cartCopy = user.cart.slice();
+    cartCopy.splice(foundItemIndex, 1);
+    return {
+        ...user,
+        cart: cartCopy
+    };
+};
 
 const addItemToCart = (user, itemId) => {
     return {
