@@ -74,6 +74,7 @@ class HomePage extends React.PureComponent{
         return (
             <>
                 <div className={"body-wrapper"}>
+                <div className={"hero"}></div>
                     <div className={"filters-wrapper"}>
                         <ItemFilters
                             allCategories={this.state.allCategories}
