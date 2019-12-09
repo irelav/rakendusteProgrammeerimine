@@ -56,7 +56,7 @@ class ItemPage extends React.PureComponent{
                             </div>
                             <div>
                                 <div>
-                                    <p className={"text--bold text--yellow"}>
+                                    <p className={"text--bold text--black"}>
                                         {this.state.price} €
                                     </p>
                                 </div>
